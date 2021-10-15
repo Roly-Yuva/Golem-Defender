@@ -1,3 +1,4 @@
 Golems
 	-- One golem for each birthstone, and on that birthstone's month there is a discount
 	for building that golem in-game
+	-- Golems split into categories: First-tier, Second-tier, Third-tier, Gem-tier
