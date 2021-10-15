@@ -17,7 +17,6 @@ function init(self)
 	local date = os.date("*t")
 	self.month = date.month
 	self.birthstone = birthstones[self.month]
-	print(self.month, self.birthstone)
 	msg.post("main:/golems/" .. self.birthstone .. "#stats", "discount", {discount = 0.80})
 end
 
