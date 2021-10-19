@@ -1,8 +1,9 @@
+local stats = require "src/include.golem_stats"
+
 local price = {
 	"pearl = 55",
 	"stone = 80"
 }
-local orig_price
 
 function init(self)
 
@@ -22,16 +23,10 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("discount") then
-		orig_price = price
-		for i = 1, #price do
-			local item = string.match(price[i], "%w+")
-			local value = string.match(price[i], "%d+")
-			value = tonumber(value)
-			price[i] = item .. " = " .. tostring(value * message.discount)
-		end
+		price = stats.change_price(self, price, message.discount)
 	elseif message_id == hash("set_orig_price") then
-		price = orig_price
-		orig_price = nil
+		price = self.orig_price
+		self.orig_price = nil
 	end
 end
 
