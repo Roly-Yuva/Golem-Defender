@@ -17,7 +17,7 @@ function init(self)
 	local date = os.date("*t")
 	self.month = date.month
 	self.birthstone = birthstones[self.month]
-	msg.post("main:/golems/" .. self.birthstone .. "#stats", "discount", {discount = 0.80})
+	msg.post("/opal#stats", "discount", {discount = 0.80})
 end
 
 function final(self)

@@ -1,8 +1,11 @@
+local price = {
+	"amethyst = 55",
+	"stone = 80"
+}
+local orig_price
+
 function init(self)
-	self.price = {
-		"amethyst = 55",
-		"stone = 80"
-	}
+	
 end
 
 function final(self)
@@ -19,16 +22,16 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("discount") then
-		self.orig_price = self.price
-		for i = 1, #self.price do
-			local price = string.sub(self.price[i], "d+")
-			price = tonumber(price)
-			local item = string.sub(self.price[i], "w+")
-			self.price[i] = tostring(price * message.discount) .. " = " .. item
+		orig_price = price
+		for i = 1, #price do
+			local item = string.match(price[i], "%w+")
+			local value = string.match(price[i], "%d+")
+			value = tonumber(value)
+			price[i] = item .. " = " .. tostring(value * message.discount)
 		end
 	elseif message_id == hash("set_orig_price") then
-		self.price = self.orig_price
-		self.orig_price = nil
+		price = orig_price
+		orig_price = nil
 	end
 end
 

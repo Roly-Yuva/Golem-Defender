@@ -39,9 +39,50 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "opal"
+  prototype: "/main/golems/gem_golems/opal.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "test(ignore)"
+  data: ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "golems"
+  children: "gem_golems"
   data: "components {\n"
   "  id: \"birthstone_discount\"\n"
   "  component: \"/src/scripts/birthstone_discount.script\"\n"
@@ -76,9 +117,10 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "golems"
+  id: "gem_golems"
   children: "amethyst"
   children: "garnet"
+  children: "opal"
   data: ""
   position {
     x: 0.0
